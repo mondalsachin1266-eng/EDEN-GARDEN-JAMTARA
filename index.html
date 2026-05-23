@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eden Garden Family Restaurant</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#f5fff5;
+      color:#222;
+      overflow-x:hidden;
+    }
+
+    :root{
+      --primary:#8be28b;
+      --secondary:#2e8b57;
+      --light:#f5fff5;
+      --dark:#0f1720;
+      --glass:rgba(255,255,255,0.12);
+    }
+
+    /* NAVBAR */
+
+    nav{
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:1000;
+      backdrop-filter:blur(10px);
+      background:rgba(15,23,32,0.85);
+      padding:15px 6%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
+    .logo{
+      color:#fff;
+      font-size:28px;
+      font-weight:700;
+      letter-spacing:1px;
+    }
+
+    .logo span{
+      color:var(--primary);
+    }
+
+    .nav-links{
+      display:flex;
+      gap:30px;
+      list-style:none;
+    }
+
+    .nav-links a{
+      color:white;
+      text-decoration:none;
+      font-size:15px;
+      position:relative;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover{
+      color:var(--primary);
+    }
+
+    .menu-btn{
+      display:none;
+      font-size:30px;
+      color:white;
+      cursor:pointer;
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+      url("WhatsApp Image 2026-05-22 at 7.20.04 PM.jpeg");
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:40px;
+    }
+
+    .hero-content{
+      max-width:800px;
+      color:white;
+      animation:fadeIn 1.5s ease;
+    }
+
+    .hero h1{
+      font-size:65px;
+      line-height:1.1;
+      margin-bottom:20px;
+    }
+
+    .hero h1 span{
+      color:var(--primary);
+    }
+
+    .hero p{
+      font-size:18px;
+      margin-bottom:30px;
+      color:#eaeaea;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 32px;
+      border-radius:40px;
+      background:linear-gradient(135deg,var(--primary),#43c66c);
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.3s;
+      box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    }
+
+    .btn:hover{
+      transform:translateY(-3px);
+    }
+
+    /* SECTIONS */
+
+    section{
+      padding:100px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-title h2{
+      font-size:40px;
+      color:var(--secondary);
+      margin-bottom:10px;
+    }
+
+    .section-title p{
+      color:#666;
+      max-width:650px;
+      margin:auto;
+    }
+
+    /* ABOUT */
+
+    .about{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:50px;
+      align-items:center;
+    }
+
+    .about img{
+      width:100%;
+      border-radius:20px;
+      box-shadow:0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .about-content h3{
+      font-size:34px;
+      margin-bottom:20px;
+      color:var(--secondary);
+    }
+
+    .about-content p{
+      line-height:1.8;
+      color:#555;
+      margin-bottom:20px;
+    }
+
+    /* MENU */
+
+    .menu-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:30px;
+    }
+
+    .menu-card{
+      background:white;
+      border-radius:20px;
+      overflow:hidden;
+      transition:0.4s;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .menu-card:hover{
+      transform:translateY(-8px);
+    }
+
+    .menu-card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+
+    .menu-content{
+      padding:20px;
+    }
+
+    .menu-content h4{
+      font-size:24px;
+      margin-bottom:10px;
+      color:var(--secondary);
+    }
+
+    .menu-content p{
+      color:#666;
+      line-height:1.6;
+    }
+
+    /* GALLERY */
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .gallery img{
+      width:100%;
+      height:280px;
+      object-fit:cover;
+      border-radius:20px;
+      transition:0.4s;
+    }
+
+    .gallery img:hover{
+      transform:scale(1.03);
+    }
+
+    /* RESERVATION */
+
+    .reservation{
+      background:linear-gradient(135deg,#dfffe0,#f5fff5);
+      border-radius:30px;
+      padding:50px;
+      text-align:center;
+    }
+
+    .reservation h3{
+      font-size:38px;
+      color:var(--secondary);
+      margin-bottom:20px;
+    }
+
+    .reservation form{
+      margin-top:30px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+    }
+
+    .reservation input,
+    .reservation textarea{
+      width:100%;
+      padding:15px;
+      border:none;
+      border-radius:12px;
+      background:white;
+      outline:none;
+      font-size:15px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .reservation textarea{
+      resize:none;
+      height:120px;
+      grid-column:1/-1;
+    }
+
+    .reservation button{
+      grid-column:1/-1;
+      border:none;
+      cursor:pointer;
+    }
+
+    /* CONTACT */
+
+    .contact{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:40px;
+      align-items:center;
+    }
+
+    .contact-box{
+      background:white;
+      padding:35px;
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .contact-box h4{
+      color:var(--secondary);
+      margin-bottom:20px;
+      font-size:28px;
+    }
+
+    .contact-box p{
+      margin-bottom:15px;
+      color:#555;
+    }
+
+    iframe{
+      width:100%;
+      border:none;
+      border-radius:20px;
+      min-height:350px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#0f1720;
+      color:white;
+      text-align:center;
+      padding:30px;
+      margin-top:50px;
+    }
+
+    /* ANIMATION */
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* MOBILE */
+
+    @media(max-width:900px){
+
+      .hero h1{
+        font-size:42px;
+      }
+
+      .about{
+        grid-template-columns:1fr;
+      }
+
+      .nav-links{
+        position:absolute;
+        top:75px;
+        right:-100%;
+        width:260px;
+        background:#111;
+        flex-direction:column;
+        padding:30px;
+        transition:0.4s;
+        border-radius:0 0 0 20px;
+      }
+
+      .nav-links.active{
+        right:0;
+      }
+
+      .menu-btn{
+        display:block;
+      }
+    }
+
+    @media(max-width:600px){
+
+      section{
+        padding:80px 5%;
+      }
+
+      .hero h1{
+        font-size:34px;
+      }
+
+      .section-title h2{
+        font-size:32px;
+      }
+
+      .reservation{
+        padding:30px 20px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+    <div class="logo">EDEN <span>GARDEN</span></div>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#reservation">Reservations</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Welcome to <span>Eden Garden</span></h1>
+      <p>
+        A modern family restaurant blending delicious food, cozy ambiance,
+        and unforgettable moments. Experience comfort, celebration,
+        and freshness under one roof.
+      </p>
+
+      <a href="#reservation" class="btn">Book a Table</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="section-title">
+      <h2>About Us</h2>
+      <p>
+        Eden Garden Family Restaurant is designed to create memorable dining
+        experiences for families, friends, and celebrations.
+      </p>
+    </div>
+
+    <div class="about">
+
+      <img src="WhatsApp Image 2026-05-22 at 7.19.39 PM.jpeg" alt="Restaurant Front">
+
+      <div class="about-content">
+        <h3>Fresh Ambience & Family Vibes</h3>
+
+        <p>
+          Our restaurant combines modern interiors, neon aesthetics,
+          green natural textures, and warm hospitality to offer a relaxing
+          and premium dining experience.
+        </p>
+
+        <p>
+          Whether you're planning a birthday celebration, family dinner,
+          or casual outing, Eden Garden provides the perfect atmosphere
+          with delicious cuisine and stylish seating.
+        </p>
+
+        <a href="#menu" class="btn">Explore Menu</a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- MENU -->
+
+  <section id="menu">
+
+    <div class="section-title">
+      <h2>Our Special Experience</h2>
+      <p>
+        Beautiful dining spaces crafted for comfort, celebrations,
+        and unforgettable memories.
+      </p>
+    </div>
+
+    <div class="menu-grid">
+
+      <div class="menu-card">
+        <img src="WhatsApp Image 2026-05-22 at 7.19.22 PM.jpeg" alt="">
+        <div class="menu-content">
+          <h4>Luxury Dining</h4>
+          <p>
+            Stylish seating with modern neon lighting and a cozy family atmosphere.
+          </p>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="WhatsApp Image 2026-05-22 at 7.19.57 PM.jpeg" alt="">
+        <div class="menu-content">
+          <h4>Birthday Celebration</h4>
+          <p>
+            Celebrate special moments with custom decorations and premium interiors.
+          </p>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="WhatsApp Image 2026-05-22 at 7.19.41 PM.jpeg" alt="">
+        <div class="menu-content">
+          <h4>Photo Spot</h4>
+          <p>
+            Instagram-worthy neon wings and aesthetic décor for memorable photos.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- GALLERY -->
+
+  <section>
+
+    <div class="section-title">
+      <h2>Gallery</h2>
+      <p>
+        Explore the vibrant interiors and premium family dining experience.
+      </p>
+    </div>
+
+    <div class="gallery">
+      <img src="WhatsApp Image 2026-05-22 at 7.20.04 PM.jpeg" alt="">
+      <img src="WhatsApp Image 2026-05-22 at 7.19.22 PM.jpeg" alt="">
+      <img src="WhatsApp Image 2026-05-22 at 7.19.57 PM.jpeg" alt="">
+      <img src="WhatsApp Image 2026-05-22 at 7.19.41 PM.jpeg" alt="">
+    </div>
+
+  </section>
+
+  <!-- RESERVATION -->
+
+  <section id="reservation">
+
+    <div class="reservation">
+
+      <h3>Reserve Your Table</h3>
+
+      <p>
+        Book your dining experience today and enjoy unforgettable moments
+        with your family and friends.
+      </p>
+
+      <form>
+
+        <input type="text" placeholder="Your Name" required>
+
+        <input type="email" placeholder="Email Address" required>
+
+        <input type="tel" placeholder="Phone Number" required>
+
+        <input type="date" required>
+
+        <textarea placeholder="Special Request"></textarea>
+
+        <button class="btn">Confirm Reservation</button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+
+    <div class="section-title">
+      <h2>Contact Us</h2>
+      <p>
+        We’d love to welcome you to Eden Garden Family Restaurant.
+      </p>
+    </div>
+
+    <div class="contact">
+
+      <div class="contact-box">
+
+        <h4>Get In Touch</h4>
+
+        <p><strong>📍 Address:</strong> Eden Garden Family Restaurant posoi More, Jamtara- Dhanbad Road, JAMTARA</p>
+
+        <p><strong>📞 Phone:</strong> +91 9608949582</p>
+
+        <p><strong>📧 Email:</strong> edengarden@email.com</p>
+
+        <p><strong>🕒 Timing:</strong> 10 AM - 11 PM</p>
+
+      </div>
+
+      <iframe
+      src="https://maps.google.com/maps?q=india&t=&z=13&ie=UTF8&iwloc=&output=embed"
+      allowfullscreen=""
+      loading="lazy">
+      </iframe>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <p>
+      © 2026 Eden Garden Family Restaurant | Designed with ❤️
+    </p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    const navLinks = document.getElementById("navLinks");
+
+    function toggleMenu(){
+      navLinks.classList.toggle("active");
+    }
+
+  </script>
+
+</body>
+</html>
